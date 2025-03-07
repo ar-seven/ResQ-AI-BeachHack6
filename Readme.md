@@ -19,11 +19,11 @@ AI-powered emergency response assistant that enhances 911 call handling with int
 
 ## 📦 Prerequisites
 - List all required software and versions
-- Include installation instructions
 - Example:
   ```
-  - Node.js (v14+)
-  - npm (v6+)
+  - Node.js (v20+)
+  - npm (v10.7)
+  - Next js (v15)
   - Python (v3.9+)
   ```
 
