@@ -60,8 +60,8 @@ AI-powered emergency response assistant that enhances 911 call handling with int
    ```
 
 ## Team Members
-  [1.Team Member 1](enter_github_id_here)   
-  [2.Team Member 2](enter_github_id_here)   
+  [1.Team Member 1](G-4UTHAM)   
+  [2.Team Member 2](ar-seven)   
   [3.Team Member 3](enter_github_id_here)   
   [4.Team Member 4](enter_github_id_here)  
 
