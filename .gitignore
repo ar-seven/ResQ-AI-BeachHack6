@@ -1,1 +1,3 @@
 other/.env
+backend/.env
+backend/resq/routers/.env

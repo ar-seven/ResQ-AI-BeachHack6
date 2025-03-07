@@ -126,7 +126,8 @@ export default function CasesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {dummyCases?.map((caseItem) => (
+              
+              {dummyCases?.map((caseItem:EmergencyCase) => (
                 <TableRow key={caseItem.user_id} className="hover:bg-muted/50">
                   <TableCell className="font-medium">{caseItem.description}</TableCell>
                   <TableCell>{caseItem.case_type}</TableCell>
@@ -162,60 +163,71 @@ export default function CasesPage() {
                           <DialogTitle>Case Details</DialogTitle>
                         </DialogHeader>
                         {selectedCase && (
-                          <div className="space-y-4">
-                            <div>
-                              <h4 className="text-sm font-semibold flex items-center gap-1">
-                                <MapPin className="h-4 w-4" />
-                                Location
-                              </h4>
-                              <p className="text-sm">
-                                Lat: {selectedCase.latitude}, Lng: {selectedCase.longitude}
-                              </p>
-                              <p className="text-sm text-muted-foreground">
-                                Geo: {selectedCase.geo_point}
-                              </p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-semibold">Description</h4>
-                              <p className="text-sm">{selectedCase.description}</p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-semibold">Case Type</h4>
-                              <p className="text-sm">{selectedCase.case_type}</p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-semibold">Priority</h4>
-                              {getPriorityBadge(selectedCase.priority)}
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-semibold flex items-center gap-1">
-                                {getAgencyIcon(selectedCase.assigned_agency)}
-                                Assigned Agency
-                              </h4>
-                              <p className="text-sm">{selectedCase.assigned_agency.replace('_', ' ')}</p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-semibold flex items-center gap-1">
-                                <User className="h-4 w-4" />
-                                User ID
-                              </h4>
-                              <p className="text-sm text-muted-foreground">{selectedCase.user_id}</p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-semibold flex items-center gap-1">
-                                <Clock className="h-4 w-4" />
-                                Created At
-                              </h4>
-                              <p className="text-sm">{new Date(selectedCase.created_at).toLocaleString()}</p>
-                            </div>
-                            <div>
-                              <h4 className="text-sm font-semibold">Status</h4>
-                              <Badge variant={selectedCase.resolved ? 'default' : 'destructive'}>
-                                {selectedCase.resolved ? 'Resolved' : 'Pending'}
-                              </Badge>
+                        <div className="space-y-4">
+                          <div>
+                            <h4 className="text-sm font-semibold flex items-center gap-1">
+                              <MapPin className="h-4 w-4" />
+                              Location
+                            </h4>
+                            <p className="text-sm">
+                              Lat: {selectedCase.latitude}, Lng: {selectedCase.longitude}
+                            </p>
+                            {/* <p className="text-sm text-muted-foreground">
+                              Geo: {selectedCase.geo_point}
+                            </p> */}
+                            <div className="mt-2">
+                              <iframe
+                                width="100%"
+                                height="200"
+                                style={{ border: 0 }}
+                                loading="lazy"
+                                allowFullScreen
+                                referrerPolicy="no-referrer-when-downgrade"
+                                src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID}&q=${selectedCase.latitude},${selectedCase.longitude}&zoom=15`}
+                              ></iframe>
                             </div>
                           </div>
-                        )}
+                          <div>
+                            <h4 className="text-sm font-semibold">Description</h4>
+                            <p className="text-sm">{selectedCase.description}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold">Case Type</h4>
+                            <p className="text-sm">{selectedCase.case_type}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold">Priority</h4>
+                            {getPriorityBadge(selectedCase.priority)}
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold flex items-center gap-1">
+                              {getAgencyIcon(selectedCase.assigned_agency)}
+                              Assigned Agency
+                            </h4>
+                            <p className="text-sm">{selectedCase.assigned_agency.replace('_', ' ')}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold flex items-center gap-1">
+                              <User className="h-4 w-4" />
+                              User ID
+                            </h4>
+                            <p className="text-sm text-muted-foreground">{selectedCase.user_id}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold flex items-center gap-1">
+                              <Clock className="h-4 w-4" />
+                              Created At
+                            </h4>
+                            <p className="text-sm">{new Date(selectedCase.created_at).toLocaleString()}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold">Status</h4>
+                            <Badge variant={selectedCase.resolved ? 'default' : 'destructive'}>
+                              {selectedCase.resolved ? 'Resolved' : 'Pending'}
+                            </Badge>
+                          </div>
+                        </div>
+                      )}
                       </DialogContent>
                     </Dialog>
                   </TableCell>

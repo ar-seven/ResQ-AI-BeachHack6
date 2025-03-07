@@ -29,8 +29,8 @@ const items = [
     icon: MessageSquareWarning,
   },
   {
-    title: "Calendar",
-    url: "#",
+    title: "My Cases",
+    url: "/protected/my-cases",
     icon: Calendar,
   },
   {
@@ -47,12 +47,7 @@ const items = [
     title: "My Profile",
     url: "/protected/details",
     icon: User, // Assuming you have a User icon imported
-  },
-  {
-    title: "Details",
-    url: "#",
-    icon: Info, // Assuming you have an Info icon imported
-  },
+  }
 ]
 
 export function AppSidebar() {
