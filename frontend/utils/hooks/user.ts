@@ -1,7 +1,7 @@
 
 import { UserProfile } from "@/types/patient";
 import { createClient } from "@/utils/supabase/client";
-import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import {  useQuery } from "@tanstack/react-query"
 
 const supabase = await createClient();
 
@@ -57,5 +57,38 @@ export const useGetUserProfile= () => {
         refetchOnMount: false,
     });
   };
+
+
+
+//update icd prediction
+const updateIcdPrediction = async (): Promise<any> => {
+  
+
+  if (error) {
+    throw Error("Error Updating Patient")
+  }
+      
+    return patient_id
+};
+
+export const UseUpdateIcdPrediction = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateIcdPrediction,
+    onSuccess: (id) => {
+    queryClient.invalidateQueries({ queryKey: ["prediction_data",id] }); 
+    toast({
+      title: "Prediction Updated",
+      }); 
+    return true;
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error Adding Patient",
+        });
+      return error;
+    }
+  });
+};
 
 
