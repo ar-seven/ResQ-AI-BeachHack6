@@ -11,12 +11,12 @@ export function LoginForm({ className, searchParams, ...props }: React.Component
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden">
-        <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+        <CardContent className="grid p-0 md:grid-cols-3">
+          <form className="p-8 md:p-6">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-2xl font-bold">Welcome back</h1>
-                <p className="text-balance text-muted-foreground">Login to your Acme Inc account</p>
+                <h1 className="text-2xl font-bold">Welcome</h1>
+                <p className="text-balance text-muted-foreground">Login to your ResQ account</p>
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -76,10 +76,12 @@ export function LoginForm({ className, searchParams, ...props }: React.Component
               </div>
             </div>
           </form>
-          <div className="relative hidden bg-muted md:block">
+          
+          {/* Image spans 2 columns */}
+          <div className="relative hidden bg-muted md:block col-span-2">
             <img
               src="https://www.phila.gov/media/20210121100428/Carlie-700x400.jpg"
-              alt="Image"
+              alt="Emergency Image"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
             />
           </div>
@@ -91,4 +93,3 @@ export function LoginForm({ className, searchParams, ...props }: React.Component
     </div>
   )
 }
-

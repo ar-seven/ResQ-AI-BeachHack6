@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button"; // Assuming shadcn Button component
 import { cn } from "@/lib/utils"; // shadcn utility for className merging
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -55,10 +56,8 @@ export default function Home() {
             )}
             asChild
           >
-            <a
-              href="/demo" // Replace with your demo link
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/sign-up" // Replace with your demo link
             >
               <Image
                 src="/siren.svg" // Custom siren icon
@@ -66,9 +65,31 @@ export default function Home() {
                 width={20}
                 height={20}
               />
-              Try the Demo
-            </a>
+              Create Account
+            </Link>
+            
           </Button>
+          <Button
+            className={cn(
+              "rounded-full h-12 px-6 bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-red-500/50",
+              "flex items-center gap-2"
+            )}
+            asChild
+          >
+            <Link
+              href="/sign-in" // Replace with your demo link
+            >
+              <Image
+                src="/siren.svg" // Custom siren icon
+                alt="Siren icon"
+                width={20}
+                height={20}
+              />
+              Sign In
+            </Link>
+            
+          </Button>
+
           <Button
             variant="outline"
             className={cn(
@@ -119,21 +140,6 @@ export default function Home() {
             height={16}
           />
           Contact
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4 hover:text-white transition-colors"
-          href="https://x.com/resqai" // Replace with your social handle
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/x.svg" // X icon
-            alt="X icon"
-            width={16}
-            height={16}
-          />
-          Follow on X
         </a>
       </footer>
     </div>

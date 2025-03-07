@@ -18,8 +18,8 @@ export function SignupForm({ className, searchParams, ...props }: React.Componen
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Create an Account</h1>
-                <p className="text-balance text-muted-foreground">
-                  Sign up for Swasth AI and manage your health details efficiently.
+                <p className="text-balance text-red-600">
+                  Sign up for ResQ  AI
                 </p>
               </div>
 
