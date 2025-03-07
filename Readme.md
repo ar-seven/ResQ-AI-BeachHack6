@@ -1,14 +1,21 @@
-# Project Name
+# ResQ AI
 
 ## 🚀 Project Description
-A concise, engaging description of your hackathon project.
+AI-powered emergency response assistant that enhances 911 call handling with intelligent, emotion-aware assistance. It prioritizes critical emergencies, analyzes caller distress levels, and recommends appropriate actions—whether dispatching police, medical teams, or firefighters. 
 
 ## 🎯 Link to Project
 [live link of project](live_link)
 
 ## 🛠 Tech Stack
-- List the primary technologies used
-- Include programming languages, frameworks, and key libraries
+**Frontend**
+-  Next Js
+-  ShadCn
+-  Tailwind Css
+-  Tanstack/React Query
+
+**Backend**
+-  Supabase
+-  Fast Api
 
 ## 📦 Prerequisites
 - List all required software and versions
@@ -17,7 +24,7 @@ A concise, engaging description of your hackathon project.
   ```
   - Node.js (v14+)
   - npm (v6+)
-  - Python (v3.8+)
+  - Python (v3.9+)
   ```
 
 ## 🔧 Installation & Setup
@@ -29,7 +36,7 @@ A concise, engaging description of your hackathon project.
    npm install
 
    # Backend
-   cd ../backend
+   cd backend
    pip install -r requirements.txt
    ```
 
