@@ -59,6 +59,28 @@ export const useGetUserProfile= () => {
   };
 
 
+  const getUserCases = async (): Promise<any> => {
+    const { data:user,} = await supabase.auth.getUser();
+    const {data,error} =  await supabase.from('service_data').select("*").eq('user_id', user?.user?.id)
+    
+    if (error) {
+      throw Error("Unexpected error")
+    }
+    return data
+  };
+  
+  export const useGetUserCases= () => {
+      return useQuery({
+          queryKey: ["user_data","cases"],
+          queryFn: () => getUserCases(),
+          staleTime: 1000 * 60 * 5, //  5 minute
+          gcTime: 1000 * 60 * 30, // 30 minutes cache
+          refetchOnWindowFocus: false,
+          refetchOnMount: false,
+      });
+    };
+
+
 
 //update icd prediction
 const updateIcdPrediction = async (): Promise<any> => {

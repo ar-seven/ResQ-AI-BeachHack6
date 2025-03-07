@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { MapPin, Siren, Clock, User } from 'lucide-react'
+import { useGetUserCases } from '@/utils/hooks/user'
 
 // Define the Case type based on your dummy data
 interface EmergencyCase {
@@ -71,6 +72,8 @@ const dummyCases: EmergencyCase[] = [
 
 export default function CasesPage() {
   const [selectedCase, setSelectedCase] = useState<EmergencyCase | null>(null)
+  const {data:dummyCases}=useGetUserCases()
+  console.log("🚀 ~ CasesPage ~ dummyCases:", dummyCases)
 
   // Priority badge styling
   const getPriorityBadge = (priority: string) => {
@@ -123,7 +126,7 @@ export default function CasesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {dummyCases.map((caseItem) => (
+              {dummyCases?.map((caseItem) => (
                 <TableRow key={caseItem.user_id} className="hover:bg-muted/50">
                   <TableCell className="font-medium">{caseItem.description}</TableCell>
                   <TableCell>{caseItem.case_type}</TableCell>
