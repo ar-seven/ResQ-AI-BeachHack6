@@ -62,7 +62,7 @@ AI-powered emergency response assistant that enhances 911 call handling with int
 ## Team Members
   [1.R Aravind](https://github.com/ar-seven)  
   
-  [2.Gautham Suresh] (https://github.com/G-4UTHAM)   
+  [2.Gautham Suresh](https://github.com/G-4UTHAM)   
   
   [3.Team Member 3](enter_github_id_here)   
   [4.Team Member 4](enter_github_id_here)  
