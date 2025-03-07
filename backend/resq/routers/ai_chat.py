@@ -4,5 +4,5 @@ router = APIRouter(tags=['rescue chat'])
 
 
 @router.post('/')
-def login():
+def ai_chat():
     return {"working": "yeah"}
