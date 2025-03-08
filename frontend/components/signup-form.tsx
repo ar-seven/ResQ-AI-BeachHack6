@@ -19,7 +19,7 @@ export function SignupForm({ className, searchParams, ...props }: React.Componen
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Create an Account</h1>
                 <p className="text-balance text-red-600">
-                  Sign up for ResQ  AI
+                  Sign up for ResQ AI
                 </p>
               </div>
 
