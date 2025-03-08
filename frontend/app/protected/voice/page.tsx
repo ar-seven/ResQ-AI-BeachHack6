@@ -180,7 +180,7 @@ export default function VoiceChatPage() {
     if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current)
 
     try {
-      const response = await fetch('http://localhost:8001/chat/', {
+      const response = await fetch('https://resq-ai-beachhack6.onrender.com/chat/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

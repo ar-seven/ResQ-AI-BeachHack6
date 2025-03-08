@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings,User,Info,MessageSquareWarning } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings,User,Info,MessageSquareWarning,Voicemail } from "lucide-react"
 
 import {
   Sidebar,
@@ -29,24 +29,24 @@ const items = [
     icon: MessageSquareWarning,
   },
   {
+    title: "Voice Assistant",
+    url: "/protected/voice",
+    icon: Voicemail,
+  },
+  {
     title: "My Cases",
     url: "/protected/my-cases",
     icon: Calendar,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "My Profile",
+    url: "/protected/details",
+    icon: User, // Assuming you have a User icon imported
   },
   {
     title: "Settings",
     url: "#",
     icon: Settings,
-  },
-  {
-    title: "My Profile",
-    url: "/protected/details",
-    icon: User, // Assuming you have a User icon imported
   }
 ]
 
