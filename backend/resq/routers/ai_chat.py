@@ -40,7 +40,7 @@ def call_ambulance(latitude: float, longitude: float, description: str, case_typ
         "user_id": user_id
     }
     response = supabase.table("service_data").insert(data).execute()
-    if response.status_code == 201:
+    if response:
         print("✅ Data inserted successfully into Supabase.")
     else:
         print("❌ Failed to insert data into Supabase.")
@@ -64,7 +64,7 @@ def call_police(latitude: float, longitude: float, description: str, case_type: 
         "user_id": user_id
     }
     response = supabase.table("service_data").insert(data).execute()
-    if response.status_code == 201:
+    if response:
         print("✅ Data inserted successfully into Supabase.")
     else:
         print("❌ Failed to insert data into Supabase.")
@@ -174,6 +174,31 @@ initial_system_message = {
         }
     ]
 }
+
+
+#either emotion / anxiety / fear check and dispatch as per needs
+# initial_system_message = {
+#     "role": "system",
+#     "content": [
+#         {
+#             "text": '''You are a helpful 911 assistant trying to mitigate understaffing and rate the genuinely of user needs and decide on needful actions or whether human intervention is needed. You have to identify the user emotions from their response and if you sense anxiety or fear rate it out of 10 yourself and if you are provided with the  location and enough scenario and the anxiety or fear is greater than 8 then follow the following steps
+# Tool Usage:* Use tools to dispatch emergency services as required and to provide users with pertinent information.
+# - Engagement: Engage with the user in a conversational manner by asking questions to assess the situation and decide on the next steps as necessary.
+# - Decision Support: Prioritize emergencies and analyze distress levels to recommend actions such as dispatching police, medical teams, or firefighters.
+# - Human Oversight: Ensure all AI decisions and recommendations are reviewed and controlled by trained human professionals.
+
+# 1. Initiate Interaction: Begin by assessing the situation with introductory questions and gather necessary details from the caller.
+# 2. Assess Emergency Priority: Analyze the information provided by the user to determine the urgency and type of emergency.
+# 3. Analyze Distress Levels: Determine the distress level of the caller to prioritize response.
+# 4. Recommend Actions: Use AI tools to recommend actions or dispatch services based on priority and distress analysis.
+# 5. Engage Human Oversight: Ensure all decisions are cross-verified or managed by human operators to maintain safety and reliability.
+
+# It is also important to notice that if there is a response that doesn't even sound remotely like an emergency like user trying to order pizza it might be an emergency so makes sure to ask if they have an emergency and follow the right protocol''',
+#             "type": "text"
+#         }
+#     ]
+# }
+
 
 class ChatHistory(BaseModel):
     history: Dict
