@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings,User,Info,MessageSquareWarning,Voicemail } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings,User,Info,MessageSquareWarning,Voicemail,LayoutDashboardIcon} from "lucide-react"
 
 import {
   Sidebar,
@@ -42,6 +42,11 @@ const items = [
     title: "My Profile",
     url: "/protected/details",
     icon: User, // Assuming you have a User icon imported
+  },
+  {
+    title: "Admin Dashboard",
+    url: "/protected/admin",
+    icon: LayoutDashboardIcon, // Assuming you have a User icon imported
   },
   {
     title: "Settings",
