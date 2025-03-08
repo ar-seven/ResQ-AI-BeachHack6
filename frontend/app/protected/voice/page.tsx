@@ -53,6 +53,7 @@ export default function VoiceChatPage() {
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const { data: userProfile } = useGetUserProfile()
+  // @ts-ignore
   const recognitionRef = useRef<SpeechRecognition | null>(null)
   const synthRef = useRef<SpeechSynthesis | null>(null)
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -61,6 +62,7 @@ export default function VoiceChatPage() {
   // Initialize Speech Recognition and Synthesis
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        // @ts-ignore
       const SpeechRecognition = (window as any).webkitSpeechRecognition || window.SpeechRecognition
       recognitionRef.current = new SpeechRecognition()
       recognitionRef.current.continuous = true
@@ -70,10 +72,11 @@ export default function VoiceChatPage() {
       recognitionRef.current.onstart = () => {
         console.log('Speech recognition started')
       }
-
+  // @ts-ignore
       recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
         console.log('onresult triggered', event.results)
         const newTranscript = Array.from(event.results)
+          // @ts-ignore
           .map((result) => result[0].transcript)
           .join('')
         setTranscript(newTranscript)
@@ -90,7 +93,7 @@ export default function VoiceChatPage() {
           lastTranscriptRef.current = newTranscript
         }
       }
-
+  // @ts-ignore
       recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
         console.error('Speech recognition error:', event.error)
         setIsRecording(false)
@@ -196,7 +199,7 @@ export default function VoiceChatPage() {
       }))
 
       setMessages(updatedMessages)
-
+  // @ts-ignore
       const assistantMessages = updatedMessages.slice(1).filter((msg) => msg.role === 'assistant')
       const latestAssistantMessage = assistantMessages[assistantMessages.length - 1]
       if (latestAssistantMessage && synthRef.current) {
@@ -247,14 +250,14 @@ export default function VoiceChatPage() {
 
   return (
     <SidebarInset>
-      <div className="flex flex-col h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-        <header className="flex h-16 items-center border-b border-gray-700 px-6 shadow-sm">
-          <SidebarTrigger className="-ml-2 text-white" />
-          <Separator orientation="vertical" className="h-6 mx-2 bg-gray-700" />
+      <div className="flex flex-col h-screen bg-background text-foreground">
+        <header className="flex h-16 items-center border-b border-border px-6 shadow-sm">
+          <SidebarTrigger className="-ml-2 text-foreground" />
+          <Separator orientation="vertical" className="h-6 mx-2 bg-border" />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbPage className="text-white">ResQ Voice Call</BreadcrumbPage>
+                <BreadcrumbPage className="text-foreground">ResQ Voice Call</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -262,14 +265,16 @@ export default function VoiceChatPage() {
         <div className="flex-1 flex flex-col items-center justify-center p-6 space-y-6">
           <div className="text-center">
             <h1 className="text-3xl font-bold">Emergency Voice Assistant</h1>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-sm text-muted-foreground mt-2">
               {isRecording ? 'Listening...' : 'Tap to start speaking'}
             </p>
           </div>
           <Button
             size="icon"
             className={`w-24 h-24 rounded-full shadow-lg transition-all duration-300 ${
-              isRecording ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'
+              isRecording
+                ? 'bg-destructive hover:bg-destructive/90'
+                : 'bg-primary hover:bg-primary/90'
             }`}
             onClick={toggleRecording}
             disabled={isLoading}
@@ -280,13 +285,13 @@ export default function VoiceChatPage() {
               <Phone className="h-12 w-12" />
             )}
           </Button>
-          <div className="text-sm text-gray-300">
+          <div className="text-sm text-muted-foreground">
             {transcript ? `You said: "${transcript}"` : 'No voice input yet'}
           </div>
           <Button
             variant="outline"
             size="sm"
-            className="flex items-center gap-2 border-gray-600 text-white hover:bg-gray-700"
+            className="flex items-center gap-2 border-border text-foreground hover:bg-accent"
             onClick={handleGetLocation}
             disabled={isLoading}
           >
@@ -294,13 +299,15 @@ export default function VoiceChatPage() {
             Share Location
           </Button>
         </div>
-        <Card className="w-full max-w-3xl mx-auto mb-4 rounded-t-lg bg-gray-700 shadow-lg">
+        <Card className="w-full max-w-3xl mx-auto mb-4 rounded-t-lg bg-muted shadow-lg">
           <div
             ref={chatContainerRef}
             className="max-h-40 overflow-y-auto p-2 space-y-2"
           >
             {messages.length <= 1 ? (
-              <div className="text-center text-gray-400 text-xs">Conversation will appear here...</div>
+              <div className="text-center text-muted-foreground text-xs">
+                Conversation will appear here...
+              </div>
             ) : (
               messages.slice(1).map((message, index) => (
                 <ChatBubble key={index} message={message} />
