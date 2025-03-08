@@ -175,9 +175,9 @@ export default function ChatPage() {
         </header>
         <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.length <= 1 ? (
-            <div className="text-center text-muted-foreground">Start by reporting an emergency...</div>
+              <div className="text-center text-muted-foreground">Start by reporting an emergency...</div>
             ) : (
-            messages.slice(1).map((message) => <ChatBubble message={message} />)
+              messages.slice(1).map((message, index) => <ChatBubble key={index} message={message} />)
             )}
         </div>
         <Card className="w-full max-w-3xl mx-auto p-4 mb-4 shadow-lg">
