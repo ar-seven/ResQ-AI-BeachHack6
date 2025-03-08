@@ -43,11 +43,11 @@ const items = [
     url: "/protected/details",
     icon: User, // Assuming you have a User icon imported
   },
-  {
-    title: "Admin Dashboard",
-    url: "/protected/admin",
-    icon: LayoutDashboardIcon, // Assuming you have a User icon imported
-  },
+  // {
+  //   title: "Admin Dashboard",
+  //   url: "/protected/admin",
+  //   icon: LayoutDashboardIcon, // Assuming you have a User icon imported
+  // },
   {
     title: "Settings",
     url: "#",
