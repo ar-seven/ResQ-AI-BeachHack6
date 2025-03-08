@@ -80,37 +80,58 @@ export const useGetUserProfile= () => {
       });
     };
 
+  const getAllUserCases = async (): Promise<any> => {
+    const { data:user,} = await supabase.auth.getUser();
+    const {data,error} =  await supabase.from('service_data').select("*,profiles(*)")
+    
+    if (error) {
+      throw Error("Unexpected error")
+    }
+    return data
+  };
+  
+  export const useGetAllUserCases= () => {
+      return useQuery({
+          queryKey: ["user_data","casesall"],
+          queryFn: () => getAllUserCases(),
+          staleTime: 1000 * 60 * 5, //  5 minute
+          gcTime: 1000 * 60 * 30, // 30 minutes cache
+          refetchOnWindowFocus: false,
+          refetchOnMount: false,
+      });
+    };
 
 
-//update icd prediction
-const updateIcdPrediction = async (): Promise<any> => {
+
+// //update icd prediction
+// const updateIcdPrediction = async (): Promise<any> => {
   
 
-  if (error) {
-    throw Error("Error Updating Patient")
-  }
+//   if (error) {
+//     throw Error("Error Updating Patient")
+//   }
       
-    return patient_id
-};
+//     return patient_id
+// };
 
-export const UseUpdateIcdPrediction = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: updateIcdPrediction,
-    onSuccess: (id) => {
-    queryClient.invalidateQueries({ queryKey: ["prediction_data",id] }); 
-    toast({
-      title: "Prediction Updated",
-      }); 
-    return true;
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Error Adding Patient",
-        });
-      return error;
-    }
-  });
-};
+// export const UseUpdateIcdPrediction = () => {
+//   const queryClient = useQueryClient();
+//   return useMutation({
+//     mutationFn: updateIcdPrediction,
+//     onSuccess: (id) => {
+//     queryClient.invalidateQueries({ queryKey: ["prediction_data",id] }); 
+//     toast({
+//       title: "Prediction Updated",
+//       }); 
+//     return true;
+//     },
+//     onError: (error: any) => {
+//       toast({
+//         title: "Error Adding Patient",
+//         });
+//       return error;
+//     }
+//   });
+// };
 
 
